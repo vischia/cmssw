@@ -98,8 +98,7 @@ process.schedule = cms.Schedule(process.edmtome_step,process.dqmHarvesting,proce
 # customisation of the process.
 
 # Automatic addition of the customisation function from DQMTools.Tests.customHarvesting
-from DQMTools.Tests.customHarvesting import customise
-
+from DQMServices.Components.test.customHarvesting import customise
 #call to customisation function customise imported from DQMTools.Tests.customHarvesting
 process = customise(process)
 

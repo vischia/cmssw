@@ -99,7 +99,7 @@ process.schedule = cms.Schedule(process.raw2digi_step,process.reconstruction_ste
 # customisation of the process.
 
 # Automatic addition of the customisation function from DQMTools.Tests.customDQM
-from DQMTools.Tests.customDQM import customise
+from DQMServices.Components.test.customDQM import customise
 
 #call to customisation function customise imported from DQMTools.Tests.customDQM
 process = customise(process)
