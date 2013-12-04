@@ -123,6 +123,8 @@ class L1TSync_Harvest : public edm::EDAnalyzer {
   // Variables
   private:
 
+    L1TLSBlock* blocker;
+
     DQMStore * dbe; // The DQM Service Handle
 
     // Input parameters

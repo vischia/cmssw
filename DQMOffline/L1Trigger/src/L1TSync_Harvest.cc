@@ -25,13 +25,12 @@
 
 // This class header
 #include "DQMOffline/L1Trigger/interface/L1TSync_Harvest.h"
-
 // System include files
 // --
 
 // User include files
 #include "DQMServices/Core/interface/DQMStore.h"
-
+#include "DQMOffline/L1Trigger/interface/L1TLSBlock.h"
 
 using namespace edm;
 using namespace std;
@@ -40,13 +39,14 @@ using namespace std;
 //-------------------------------------------------------------------------------------
 L1TSync_Harvest::L1TSync_Harvest(const ParameterSet & pset){
 
+
 ///  m_parameters = pset;
 ///  
 ///  // Mapping parameter input variables
 ///  m_scalersSource       = pset.getParameter         <InputTag>("inputTagScalersResults");
 ///  m_l1GtDataDaqInputTag = pset.getParameter         <InputTag>("inputTagL1GtDataDaq");
 ///  m_l1GtEvmSource       = pset.getParameter         <InputTag>("inputTagtEvmSource");
-///  m_verbose             = pset.getUntrackedParameter<bool>    ("verbose",false);
+  m_verbose             = pset.getUntrackedParameter<bool>    ("verbose",false);
 ///  m_refPrescaleSet      = pset.getParameter         <int>     ("refPrescaleSet");  
 ///
 ///  // Getting which categories to monitor
@@ -183,6 +183,12 @@ L1TSync_Harvest::L1TSync_Harvest(const ParameterSet & pset){
 ///  }
 ///
 ///
+  
+  
+  blocker=new L1TLSBlock();
+  if(m_verbose) cout << "[L1TSync_Harvest] L1TLSBlock blocker is set" << endl;
+  
+
   if (pset.getUntrackedParameter < bool > ("dqmStore", false)) {
     dbe = Service < DQMStore > ().operator->();
     dbe->setVerbose(0);
@@ -197,7 +203,7 @@ L1TSync_Harvest::L1TSync_Harvest(const ParameterSet & pset){
   bool disable = pset.getUntrackedParameter < bool > ("disableROOToutput", false);
   if (disable) {m_outputFile = "";}
 
-  if (dbe != NULL) {dbe->setCurrentFolder("L1T/L1TSync");}
+  if (dbe != NULL) {dbe->setCurrentFolder("L1T/L1TSync/Harvest");}
 
 }
 
@@ -216,8 +222,8 @@ void L1TSync_Harvest::beginJob(void){
   dbe = Service < DQMStore > ().operator->();
 
   if (dbe) {
-    dbe->setCurrentFolder("L1T/L1TSync");
-    dbe->rmdir("L1T/L1TSync");
+    dbe->setCurrentFolder("L1T/L1TSync/Harvest");
+    dbe->rmdir("L1T/L1TSync/Harvest");
   }
  
 }

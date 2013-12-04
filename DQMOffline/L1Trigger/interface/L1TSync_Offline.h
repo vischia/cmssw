@@ -111,27 +111,27 @@ class L1TSync_Offline : public edm::EDAnalyzer {
     void endRun  (const edm::Run& run, const edm::EventSetup& iSetup);
 
   virtual void beginLuminosityBlock(edm::LuminosityBlock const& lumiBlock, edm::EventSetup const& c);
-// no lumi block //    virtual void endLuminosityBlock  (edm::LuminosityBlock const& lumiBlock, edm::EventSetup const& c);
+  virtual void endLuminosityBlock  (edm::LuminosityBlock const& lumiBlock, edm::EventSetup const& c);
 
 
   // Private Methods
   private:
 
     void getBeamConfOffline(const edm::Event&);
-// no lumi block //    void doFractionInSync(bool iForce=false, bool iBad=false);
-// no lumi block //    void certifyLSBlock  (std::string iTrigger, int iInitLs, int iEndLs ,float iValue);
-
-  // Variables
+    void doFractionInSync(bool iForce=false, bool iBad=false);
+    void certifyLSBlock  (std::string iTrigger, int iInitLs, int iEndLs ,float iValue);
+    
+    // Variables
   private:
-
+    
     DQMStore * dbe; // The DQM Service Handle
-
+    
     // Input parameters
     edm::ParameterSet                      m_parameters;
-
+    
     // ROOT output filename
     std::string                            m_outputFile;        
-
+    
     // bool
     bool                                   m_verbose;
     bool                                   m_currentLSValid;
