@@ -25,23 +25,24 @@ l1tSync_Offline = cms.EDAnalyzer("L1TSync_Offline",
 
       # Global parameters for algo selection
       forceGlobalParameters = cms.bool(False),  # Force use of global over bit-by-bit parameters 
-      doGlobalAutoSelection = cms.bool(False),  # Do automatic/fixed algo selection for all monitored algos
+      doGlobalAutoSelection = cms.bool(True),  # Do automatic/fixed algo selection for all monitored algos
 
       BPTX = cms.PSet(
         monitor       = cms.bool(True),
-        algo          = cms.string("Tech_BPTX_AND"),
+#        algo          = cms.string("Tech_BPTX_AND"),
+        algo          = cms.string("L1_ZeroBias"),
         CertMinEvents = cms.int32(50),
       ),
       Mu = cms.PSet(
         monitor         = cms.bool(True),
         doAutoSelection = cms.bool(True),
-        algo            = cms.string(""),
+        algo            = cms.string("HLT_L1SingleMu10_v*"),
         CertMinEvents   = cms.int32(20),
       ),
       EG = cms.PSet(
         monitor         = cms.bool(True),
         doAutoSelection = cms.bool(True),
-        algo            = cms.string(""),
+        algo            = cms.string("HLT_L1SingleEG5"),
         CertMinEvents   = cms.int32(20),
       ),
       IsoEG = cms.PSet( 

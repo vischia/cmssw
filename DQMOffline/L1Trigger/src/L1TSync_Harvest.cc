@@ -49,6 +49,10 @@ L1TSync_Harvest::L1TSync_Harvest(const ParameterSet & pset){
   m_verbose             = pset.getUntrackedParameter<bool>    ("verbose",false);
 ///  m_refPrescaleSet      = pset.getParameter         <int>     ("refPrescaleSet");  
 ///
+
+  if(m_verbose) cout << "[L1TSync_Harvest] Called constructor" << endl;
+
+
 ///  // Getting which categories to monitor
 ///  ParameterSet Categories = pset.getParameter< ParameterSet >("Categories");
 ///
@@ -598,7 +602,7 @@ void L1TSync_Harvest::doFractionInSync(bool iForce,bool iBad){
         }
 
         if(m_verbose){
-          cout << "Alias = " << theTriggerAlias 
+          cout << "[L1TSync_Harvest] Alias = " << theTriggerAlias 
                << " InitLS=" << fLS 
                << " EndLS=" <<  lLS 
                << " Events=" << CountAll ;
@@ -612,7 +616,7 @@ void L1TSync_Harvest::doFractionInSync(bool iForce,bool iBad){
           if(m_verbose){cout << " <--------------- Enough Statistics: ";}
 
         
-          // Calculating fraction of in time 
+          // Calculating fraction  of in time 
           double fraction = 0;
           if(CountAll >0){fraction = CountSync/CountAll;}
 
@@ -669,13 +673,13 @@ void L1TSync_Harvest::doFractionInSync(bool iForce,bool iBad){
 //_____________________________________________________________________
 void L1TSync_Harvest::certifyLSBlock(string iTrigger, int iInitLs, int iEndLs ,float iValue){
   
-///  // Finding correct bins in the histogram for this block
-///  int binInit = m_algoCertification[iTrigger]->getTH1()->FindBin(iInitLs);
-///  int binEnd  = m_algoCertification[iTrigger]->getTH1()->FindBin(iEndLs);
-///
-///  for(int ls=binInit ; ls<=binEnd ; ls++){
-///    m_algoCertification[iTrigger]->setBinContent(ls,iValue);
-///  }
+  // Finding correct bins in the histogram for this block
+  int binInit = m_algoCertification[iTrigger]->getTH1()->FindBin(iInitLs);
+  int binEnd  = m_algoCertification[iTrigger]->getTH1()->FindBin(iEndLs);
+
+  for(int ls=binInit ; ls<=binEnd ; ls++){
+    m_algoCertification[iTrigger]->setBinContent(ls,iValue);
+  }
 
 }
 

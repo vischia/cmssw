@@ -36,13 +36,13 @@ l1tSync_Harvest = cms.EDAnalyzer("L1TSync_Harvest",
       Mu = cms.PSet(
         monitor         = cms.bool(True),
         doAutoSelection = cms.bool(True),
-        algo            = cms.string(""),
+        algo            = cms.string("HLT_L1SingleMu10_v*"),
         CertMinEvents   = cms.int32(20),
       ),
       EG = cms.PSet(
         monitor         = cms.bool(True),
         doAutoSelection = cms.bool(True),
-        algo            = cms.string(""),
+        algo            = cms.string("HLT_L1SingleEG5"),
         CertMinEvents   = cms.int32(20),
       ),
       IsoEG = cms.PSet( 
